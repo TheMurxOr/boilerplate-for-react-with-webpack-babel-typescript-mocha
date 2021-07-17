@@ -1,95 +1,66 @@
 // shared config (dev and prod)
 const { resolve } = require('path');
-const { CheckerPlugin } = require('awesome-typescript-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FixDefaultImportPlugin = require('webpack-fix-default-import-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+
+module.exports.ProjectOutputFolder = 'dist/'
+console.log('Project Output path: ', this.ProjectOutputFolder)
+
+module.exports.ProjectPublicFolder = 'public/'
+console.log('Project public folder: ', this.ProjectPublicFolder)
 
 module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
-    context: resolve(process.cwd(), 'src')
+    context: resolve(process.cwd(), 'src'),
     output: {
         filename: 'js/index.bundle.js',
-        path: resolve(process.cwd(), 'build'),
-        publicPath: "/assets/",
+        path: resolve(process.cwd(), this.ProjectOutputFolder),
+       
     },
     plugins: [
-        new CheckerPlugin(),
-        new HtmlWebpackPlugin({ template: resolve(process.cwd(), 'public', 'index.html.ejs') }),
-        new FixDefaultImportPlugin(),
-        new CopyWebpackPlugin(),
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+        template: resolve(
+            process.cwd(),
+            this.ProjectPublicFolder,
+            'index.html.ejs',
+        ),
+        }),
+        // new MiniCssExtractPlugin(),
+        new CopyWebpackPlugin({
+        patterns: [
+            {
+            from: resolve(this.ProjectPublicFolder,`**/*`),
+            to: `images/[name][ext]",`, // "[path][name].[contenthash][ext]",
+            globOptions: { ignore: ['**/*.ejs'] },
+            },
+        ],
+        }),
     ],
     externals: {
-        'react': 'React',
+        jquery: 'jQuery',
+        react: 'React',
         'react-dom': 'ReactDOM',
+        'react-router-dom': 'ReactRouterDom',
     },
     performance: {
-        hints: false,
+        // false | "warning" | "error"
+        hints: "warning",
     },
     module: {
         rules: [
+            { test: /\.(ts|js)x?$/, loader: 'babel-loader', exclude: /node_modules/ },
             {
-                test: /\.js$/,
-                use: ['babel-loader', 'source-map-loader'],
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.tsx?$/,
-                use: ['babel-loader', 'awesome-typescript-loader'],
-            },
-            {
-                enforce: "pre",
-                test: /\.js$/,
-                loader: "source-map-loader"
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }],
-            },
-            {
-                test: /\.scss$/,
-                loaders: [
-                    'style-loader',
-                    { loader: 'css-loader', options: { importLoaders: 1 } },
-                    'sass-loader',
+                test: /.s?css$/,
+                use: [
+                'style-loader',
+                // MiniCssExtractPlugin.loader,
+                'css-loader',
+                'sass-loader',
                 ],
-            },
-            {
-                test: /\.(jpe?g|png|gif|svg|ico)$/i,
-                /* Exclude fonts while working with images, e.g. .svg can be both image or font. */
-                exclude: resolve(process.cwd(), '/public/fonts'),
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-
-                        name(file) {
-                            if (process.env.NODE_ENV === 'development') {
-                                return 'img/[name].[ext]';
-                            }
-
-                            return 'img/[hash].[ext]';
-                        },
-                    }
-                },
-                {
-                    loader: 'image-webpack-loader',
-                    options: {
-                        bypassOnDebug: true, // webpack@1.x
-                        disable: true, // webpack@2.x and newer
-                        optipng: {
-                            enabled: true,
-                            optimizationLevel: 7,
-                        },
-                        gifsicle: {
-                            interlaced: false,
-                        }
-                    },
-                },
-                ]
-
-
             },
         ],
     },

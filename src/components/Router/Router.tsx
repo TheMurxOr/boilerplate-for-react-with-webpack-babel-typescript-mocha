@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 // import * as icon from "../../../public/favicon.ico";
-
-// import $ from "jquery";
-// import "./App.scss";
 import Header from "../Header/Header";
 import { Hello } from "../Hello";
 

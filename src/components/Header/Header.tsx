@@ -1,10 +1,10 @@
-import * as $ from "jquery";
-import { Component } from "react";
-import * as React from "react";
-import "./Header.scss";
+import * as $ from "jquery"
+import { Component } from "react"
+import * as React from "react"
+import "./Header.scss"
 
 
-const logo = require("../../../public/logo.png");
+// const logo = require("../../../public/logo.png");
 interface IHeaderProps {
   firstname: string;
   profileImage: any;
@@ -15,7 +15,7 @@ export default class Header extends Component<IHeaderProps, any> {
       <header id="top-header" className="fixed-top">
         <nav className="navbar navbar-expand-lg navbar-light">
           <a className="navbar-brand" href="/">
-            <img src={logo} />
+            {/* <img src={logo} /> */}
           </a>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ml-auto my-1 my-lg-0">

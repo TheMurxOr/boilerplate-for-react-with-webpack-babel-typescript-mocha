@@ -1,9 +1,12 @@
-# boilerplate-for-react-with-webpack-babel-typescript-mocha
-
+# Hello World,
+this is my small react webpack babel typescript mocha boilerplate project.
+It's primary about keeping a working configuration of my preferred JS libs, 
+and may have a small chat about with some of you guys about it.
+Feel free to branch this repo, or do whatsoever you want with it.
 ## Inspired by
-``https://github.com/vikpe/react-webpack-typescript-starter``
-``https://github.com/rokoroku/react-redux-typescript-boilerplate``
-``https://github.com/strothj/webpack-babel-typescript-react-boilerplate``
+`https://github.com/vikpe/react-webpack-typescript-starter`
+`https://github.com/rokoroku/react-redux-typescript-boilerplate`
+`https://github.com/strothj/webpack-babel-typescript-react-boilerplate`
 
 --save-dev
 @babel/cli @babel/core @babel/preset-env @babel/preset-react babel-loader 
