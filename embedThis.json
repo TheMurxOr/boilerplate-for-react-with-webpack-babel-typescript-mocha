@@ -5,8 +5,9 @@
       "test":"json", 
       "contains":
         {
-          "first":"fo", 
-          "and_bar":false
+          "second":"fo", 
+          "and_bar":true,
+         "with-value":23,
         }
     },
  ]
