@@ -10,6 +10,8 @@ console.log('Project Output path: ', this.ProjectOutputFolder)
 module.exports.ProjectPublicFolder = 'public/'
 console.log('Project public folder: ', this.ProjectPublicFolder)
 
+console.log('Project public folder: ',resolve(process.cwd(), this.ProjectOutputFolder))
+
 module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
