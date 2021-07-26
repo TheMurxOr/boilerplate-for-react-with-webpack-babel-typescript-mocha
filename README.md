@@ -64,3 +64,9 @@ react-redux
 react-router 
 redux 
 redux-actions
+
+
+# Markdown magic
+* [simple perma link](https://github.com/TheMurxOr/boilerplate-for-react-with-webpack-babel-typescript-mocha/blob/d177ae36f57e86d47fed234859d6e2808ca7b48f/embedThis.json#L3)
+* [multi line perma link](https://github.com/TheMurxOr/boilerplate-for-react-with-webpack-babel-typescript-mocha/blob/d177ae36f57e86d47fed234859d6e2808ca7b48f/embedThis.json#L4-L12)
+  * Press on line number and hold shift to mark a line block finally click on copy perma link
